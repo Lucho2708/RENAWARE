@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateEmployeesSalariesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('employees_salaries', function (Blueprint $table) {
+          //Tabla de salarios de empleados
+            $table->bigIncrements('id');
+            $table->integer('salario');
+            $table->integer('impuesto');
+            $table->integer('salud');
+            $table->integer('pension');
+            $table->integer('valor_primas');
+            $table->string('cargo');
+            $table->unsignedBigInteger('employee_id');
+
+            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('employees_salaries');
+    }
+}
