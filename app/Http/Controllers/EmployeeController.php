@@ -23,7 +23,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.create');
     }
 
     /**
@@ -34,7 +34,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+          'nombres'   => 'required',
+          'documento' => 'required',
+          'telefono'  => 'required',
+          'direccion' => 'required'
+        ]);
+
+        
     }
 
     /**
