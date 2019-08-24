@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Employee;
 
 class EmployeeSalary extends Model
 {
@@ -14,8 +15,8 @@ class EmployeeSalary extends Model
       'valor_primas',
       'cargo'];
 
-    public function Employee()
+    public function employees()
     {
-      return $this->belongsTo('App\Employee');
+      return $this->belongsTo(Employee::class);
     }
 }

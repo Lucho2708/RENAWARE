@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Employee;
 
 class EmployeeController extends Controller
 {
@@ -41,7 +41,10 @@ class EmployeeController extends Controller
           'direccion' => 'required'
         ]);
 
-        
+        createEmployee ($request->all());
+
+        return redirect('/');
+
     }
 
     /**
