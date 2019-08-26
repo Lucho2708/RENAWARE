@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Employee;
+use App\Empleado;
 
 class EmployeeSalary extends Model
 {
+    protected $table = 'employees_salaries';
+
     protected $fillable = [
       'salario',
       'impuesto',
@@ -17,6 +19,6 @@ class EmployeeSalary extends Model
 
     public function employees()
     {
-      return $this->belongsTo(Employee::class);
+      return $this->belongsTo(Empleado::class);
     }
 }

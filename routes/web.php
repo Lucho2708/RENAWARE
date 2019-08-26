@@ -15,6 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group([], function () {
-  Route::resource('employee','EmployeeController');
-});
+Route::get('empleado/crear', [
+  'as' => 'employee.create',
+  'uses' => 'EmployeeController@create'
+]);
+
+Route::post('empleado/crear',[
+  'as' => 'employee.store',
+  'uses' => 'EmployeeController@store'
+]);
+
+Route::get('cargo/crear', [
+  'as' => 'position.create',
+  'uses' => 'EmployeeSalaryController@create'
+]);
+
+Route::post('cargo/crear',[
+  'as' => 'position.store',
+  'uses' => 'EmployeeSalaryController@store'
+]);

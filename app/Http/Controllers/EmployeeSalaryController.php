@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Empleado;
 
-class EmployeeController extends Controller
+use Illuminate\Http\Request;
+use App\EmployeeSalary;
+
+class EmployeeSalaryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-      //
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        return view('position.create');
     }
 
     /**
@@ -34,19 +35,20 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-          'nombres'   => 'required',
-          'documento' => 'required',
-          'telefono'  => 'required',
-          'direccion' => 'required'
+        $this->validate( $request, [
+          'salario'   => 'required',
+          'impuesto'  => 'required',
+          'salud'     => 'required',
+          'pension'   => 'required',
+          'valor_primas' => 'required',
+          'cargo'     => 'required'
         ]);
 
-        $empleado = New Empleado ($request->all());
+        $position = New EmployeeSalary ($request->all());
 
-        $empleado->save();
+        $position->save();
 
-        return redirect(route('employee.create'));
-
+        return redirect(route('position.create'));
     }
 
     /**

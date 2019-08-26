@@ -17,12 +17,12 @@ class CreateEmployeesSalariesTable extends Migration
           //Tabla de salarios de empleados
             $table->bigIncrements('id');
             $table->integer('salario');
-            $table->integer('impuesto');
-            $table->integer('salud');
-            $table->integer('pension');
-            $table->integer('valor_primas');
+            $table->double('impuesto');
+            $table->double('salud');
+            $table->double('pension');
+            $table->double('valor_primas');
             $table->string('cargo');
-            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('employee_id')->nullable();
 
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->timestamps();
