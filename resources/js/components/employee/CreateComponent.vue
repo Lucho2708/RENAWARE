@@ -7,7 +7,7 @@
         <label for="nombres">Nombres:</label>
         <input type="text" class="form-control" :class="{'is-invalid':this.errors.nombres!=null}" id="nombres" v-model="employee.nombres">
         <div class="invalid-feedback">
-          {{}}
+          {{errors.nombres}}
         </div>
       </div>
       <div class="form-group">
@@ -69,15 +69,16 @@ export default {
         this.employee.documento = '',
         this.employee.telefono = '',
         this.employee.direccion = '',
-        this.employee.cargo = ''
-        this.errors = []
+        this.employee.cargo = '',
+        this.errors = '';
 
       })
       .catch( error =>{
-        this.errors = []
+        this.errors = ''
         if(error.response.status == 422){
           this.errors = (error.response.data.errors);
           console.log(this.errors);
+          console.log(this.errors.nombres)
         }
       });
     }
