@@ -28,7 +28,8 @@ class PositionTest extends TestCase
           ->type($salud, 'salud')
           ->type($pension, 'pension')
           ->type($valor_primas, 'valor_primas')
-          ->type($cargo, 'cargo');
+          ->type($cargo, 'cargo')
+          ->press('Crear');
 
         $this->seeInDatabase('employees_salaries',[
           'salario' => $salario,

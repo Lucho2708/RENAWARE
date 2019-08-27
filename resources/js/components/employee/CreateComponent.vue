@@ -1,17 +1,21 @@
 <template>
   <div>
     <h5 class="card-tite">Crear empleado</h5>
-    <div class="alert alert-danger" role="alert" aria-label="Close">
-      A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-    </div>
     <br>
     <form @submit.prevent="create">
       <div class="form-group">
         <label for="nombres">Nombres:</label>
-        <input type="text" class="form-control" v-model="employee.nombres">
+        <input type="text" class="form-control" :class="{'is-invalid':this.errors==null}" id="nombres" v-model="employee.nombres">
+        <div class="invalid-feedback">
+          {{errors}}
+        </div>
       </div>
-      <div  class="invalid-feedback">
-        Hola
+      <div class="form-group">
+        <label for="validationServer05">Zip</label>
+        <input type="text" class="form-control is-invalid" id="validationServer05" v-model="employee.nombres">
+        <div class="invalid-feedback">
+          {{errors}}
+        </div>
       </div>
       <div class="form-group">
         <label for="documento">Documento:</label>
@@ -58,17 +62,20 @@ export default {
         cargo:this.employee.cargo
       };
       axios.post('crear', params)
-      .then(function (response){
+      .then( response => {
         this.employee.nombres  = '',
         this.employee.documento = '',
         this.employee.telefono = '',
         this.employee.direccion = '',
         this.employee.cargo = ''
+        this.errors = []
 
       })
-      .catch(function (error){
-        if (error.response.status == 422){
-          errors.push(error.response.data.errors);
+      .catch( error =>{
+        this.errors = []
+        if(error.response.status == 422){
+          this.errors.push(error.response.data.errors);
+          console.log(errors.nombres[0]);
         }
       });
     }

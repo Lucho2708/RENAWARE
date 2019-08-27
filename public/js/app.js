@@ -1770,6 +1770,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1786,6 +1790,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     create: function create() {
+      var _this = this;
+
       var params = {
         nombres: this.employee.nombres,
         documento: this.employee.documento,
@@ -1794,10 +1800,15 @@ __webpack_require__.r(__webpack_exports__);
         cargo: this.employee.cargo
       };
       axios.post('crear', params).then(function (response) {
-        this.employee.nombres = '', this.employee.documento = '', this.employee.telefono = '', this.employee.direccion = '', this.employee.cargo = '';
+        _this.employee.nombres = '', _this.employee.documento = '', _this.employee.telefono = '', _this.employee.direccion = '', _this.employee.cargo = '';
+        _this.errors = [];
       })["catch"](function (error) {
+        _this.errors = [];
+
         if (error.response.status == 422) {
-          errors.push(error.response.data.errors);
+          _this.errors.push(error.response.data.errors);
+
+          console.log(errors.nombres[0]);
         }
       });
     }
@@ -37150,8 +37161,6 @@ var render = function() {
   return _c("div", [
     _c("h5", { staticClass: "card-tite" }, [_vm._v("Crear empleado")]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _c(
@@ -37178,7 +37187,8 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text" },
+            class: { "is-invalid": this.errors == null },
+            attrs: { type: "text", id: "nombres" },
             domProps: { value: _vm.employee.nombres },
             on: {
               input: function($event) {
@@ -37188,11 +37198,43 @@ var render = function() {
                 _vm.$set(_vm.employee, "nombres", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v("\n        " + _vm._s(_vm.errors) + "\n      ")
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "invalid-feedback" }, [
-          _vm._v("\n      Hola\n    ")
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "validationServer05" } }, [
+            _vm._v("Zip")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.employee.nombres,
+                expression: "employee.nombres"
+              }
+            ],
+            staticClass: "form-control is-invalid",
+            attrs: { type: "text", id: "validationServer05" },
+            domProps: { value: _vm.employee.nombres },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.employee, "nombres", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v("\n        " + _vm._s(_vm.errors) + "\n      ")
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -37327,27 +37369,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "alert alert-danger",
-        attrs: { role: "alert", "aria-label": "Close" }
-      },
-      [
-        _vm._v("\n    A simple danger alert with "),
-        _c("a", { staticClass: "alert-link", attrs: { href: "#" } }, [
-          _vm._v("an example link")
-        ]),
-        _vm._v(". Give it a click if you like.\n  ")
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
