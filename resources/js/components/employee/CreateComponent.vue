@@ -5,29 +5,31 @@
     <form @submit.prevent="create">
       <div class="form-group">
         <label for="nombres">Nombres:</label>
-        <input type="text" class="form-control" :class="{'is-invalid':this.errors==null}" id="nombres" v-model="employee.nombres">
+        <input type="text" class="form-control" :class="{'is-invalid':this.errors.nombres!=null}" id="nombres" v-model="employee.nombres">
         <div class="invalid-feedback">
-          {{errors}}
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="validationServer05">Zip</label>
-        <input type="text" class="form-control is-invalid" id="validationServer05" v-model="employee.nombres">
-        <div class="invalid-feedback">
-          {{errors}}
+          {{}}
         </div>
       </div>
       <div class="form-group">
         <label for="documento">Documento:</label>
-        <input type="number" class="form-control" v-model="employee.documento">
+        <input type="number" class="form-control" :class="{'is-invalid':this.errors.documento!=null}" id="documento" v-model="employee.documento">
+        <div class="invalid-feedback">
+          {{errors.documento}}
+        </div>
       </div>
       <div class="form-group">
         <label for="telefono">Telefono:</label>
-        <input type="number" class="form-control" v-model="employee.telefono">
+        <input type="number" class="form-control" :class="{'is-invalid':this.errors.telefono!=null}" id="telefono" v-model="employee.telefono">
+        <div class="invalid-feedback">
+          {{errors.telefono}}
+        </div>
       </div>
       <div class="form-group">
         <label for="direccion">Direccion:</label>
-        <input type="text" class="form-control" v-model="employee.direccion">
+        <input type="text" class="form-control" :class="{'is-invalid':this.errors.direccion!=null}" id="direccion" v-model="employee.direccion">
+        <div class="invalid-feedback">
+          {{errors.direccion}}
+        </div>
       </div>
       <div class="form-group">
         <label for="cargo">Cargo:</label>
@@ -48,7 +50,7 @@ export default {
     return{
       employees: [],
       employee: {nombres: '', documento: '', telefono: '', direccion:'', cargo:''},
-      errors:[]
+      errors:''
     }
   },
   methods:{
@@ -74,8 +76,8 @@ export default {
       .catch( error =>{
         this.errors = []
         if(error.response.status == 422){
-          this.errors.push(error.response.data.errors);
-          console.log(errors.nombres[0]);
+          this.errors = (error.response.data.errors);
+          console.log(this.errors);
         }
       });
     }

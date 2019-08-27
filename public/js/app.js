@@ -1774,6 +1774,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1785,7 +1787,7 @@ __webpack_require__.r(__webpack_exports__);
         direccion: '',
         cargo: ''
       },
-      errors: []
+      errors: ''
     };
   },
   methods: {
@@ -1806,9 +1808,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.errors = [];
 
         if (error.response.status == 422) {
-          _this.errors.push(error.response.data.errors);
-
-          console.log(errors.nombres[0]);
+          _this.errors = error.response.data.errors;
+          console.log(_this.errors);
         }
       });
     }
@@ -37187,7 +37188,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            class: { "is-invalid": this.errors == null },
+            class: { "is-invalid": this.errors.nombres != null },
             attrs: { type: "text", id: "nombres" },
             domProps: { value: _vm.employee.nombres },
             on: {
@@ -37201,39 +37202,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors) + "\n      ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "validationServer05" } }, [
-            _vm._v("Zip")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.employee.nombres,
-                expression: "employee.nombres"
-              }
-            ],
-            staticClass: "form-control is-invalid",
-            attrs: { type: "text", id: "validationServer05" },
-            domProps: { value: _vm.employee.nombres },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.employee, "nombres", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors) + "\n      ")
+            _vm._v("\n        {{}}\n      ")
           ])
         ]),
         _vm._v(" "),
@@ -37250,7 +37219,8 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "number" },
+            class: { "is-invalid": this.errors.documento != null },
+            attrs: { type: "number", id: "documento" },
             domProps: { value: _vm.employee.documento },
             on: {
               input: function($event) {
@@ -37260,7 +37230,11 @@ var render = function() {
                 _vm.$set(_vm.employee, "documento", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v("\n        " + _vm._s(_vm.errors.documento) + "\n      ")
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -37276,7 +37250,8 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "number" },
+            class: { "is-invalid": this.errors.telefono != null },
+            attrs: { type: "number", id: "telefono" },
             domProps: { value: _vm.employee.telefono },
             on: {
               input: function($event) {
@@ -37286,7 +37261,11 @@ var render = function() {
                 _vm.$set(_vm.employee, "telefono", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v("\n        " + _vm._s(_vm.errors.telefono) + "\n      ")
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -37302,7 +37281,8 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "text" },
+            class: { "is-invalid": this.errors.direccion != null },
+            attrs: { type: "text", id: "direccion" },
             domProps: { value: _vm.employee.direccion },
             on: {
               input: function($event) {
@@ -37312,7 +37292,11 @@ var render = function() {
                 _vm.$set(_vm.employee, "direccion", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v("\n        " + _vm._s(_vm.errors.direccion) + "\n      ")
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -49744,8 +49728,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\luiss\Documents\GitHub\RENAWARE\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\luiss\Documents\GitHub\RENAWARE\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\suf\Documents\renaware\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\suf\Documents\renaware\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
