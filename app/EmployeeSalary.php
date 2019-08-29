@@ -17,7 +17,7 @@ class EmployeeSalary extends Model
       'valor_primas',
       'cargo'];
 
-    public function employees()
+    public function employee()
     {
       return $this->belongsTo(Empleado::class);
     }

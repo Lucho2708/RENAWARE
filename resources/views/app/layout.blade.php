@@ -15,11 +15,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Empleados<span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('employee.index')}}">Empleados</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('employee.create')}}">Crear empleados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('position.index')}}">Cargos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('position.create')}}">Crear cargo</a>

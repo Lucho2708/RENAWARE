@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\EmployeeSalary;
 use App\Empleado;
 
 class EmployeeController extends Controller
@@ -13,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-      //
+      return view('employee.list');
     }
 
     /**
@@ -34,16 +37,29 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+      //Se debe coloca Database transactions
+
         $this->validate($request, [
           'nombres'   => 'required',
-          'documento' => 'required',
-          'telefono'  => 'required',
-          'direccion' => 'required'
+          'documento' => 'required|integer|min:1',
+          'telefono'  => 'required|integer|min:1',
+          'direccion' => 'required',
+          'cargo'     => 'required'
         ]);
 
-        $empleado = New Empleado ($request->all());
+        DB::transaction(function() use ($request){
 
-        $empleado->save();
+          $empleado = New Empleado ($request->all());
+
+          $empleado->save();
+
+          $cargo = EmployeeSalary::findOrFail($request['cargo']);
+
+          $cargo->employee()->associate($empleado);
+
+          $cargo->save();
+
+        });
 
         return redirect(route('employee.create'));
 
@@ -92,5 +108,16 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPosition()
+    {
+      //$positions = EmployeeSalary::all();
+
+      $positions = DB::table('employees_salaries')
+        ->whereNull('employee_id')
+        ->get();
+
+      return $positions;
     }
 }

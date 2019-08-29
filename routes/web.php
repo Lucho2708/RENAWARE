@@ -25,6 +25,11 @@ Route::post('empleado/crear',[
   'uses' => 'EmployeeController@store'
 ]);
 
+Route::get('empleado/listar', [
+  'as'=>'employee.index',
+  'uses' => 'EmployeeController@index'
+]);
+
 Route::get('cargo/crear', [
   'as' => 'position.create',
   'uses' => 'EmployeeSalaryController@create'
@@ -33,4 +38,19 @@ Route::get('cargo/crear', [
 Route::post('cargo/crear',[
   'as' => 'position.store',
   'uses' => 'EmployeeSalaryController@store'
+]);
+
+Route::get('cargo/listar', [
+  'as' => 'position.index',
+  'uses' => 'EmployeeController@index'
+]);
+
+Route::get('empleado/getPosition', [
+  'as' => 'position.getPosition',
+  'uses' => 'EmployeeController@getPosition'
+]);
+
+Route::get('cargo/getPositionAll',[
+  'as' => 'position.getPositionAll',
+  'uses' => 'EmployeeSalaryController@getPositionAll'
 ]);

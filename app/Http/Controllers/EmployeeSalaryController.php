@@ -14,7 +14,7 @@ class EmployeeSalaryController extends Controller
      */
     public function index()
     {
-        //
+        return View('position.list');
     }
 
     /**
@@ -94,5 +94,11 @@ class EmployeeSalaryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPositionAll()
+    {
+      $position = EmployeeSalary::All();
+      return $position;
     }
 }

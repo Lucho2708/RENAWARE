@@ -1776,6 +1776,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1787,12 +1793,26 @@ __webpack_require__.r(__webpack_exports__);
         direccion: '',
         cargo: ''
       },
-      errors: ''
+      errors: '',
+      positions: ''
     };
   },
+  created: function created() {
+    this.getPosition();
+  },
   methods: {
-    create: function create() {
+    getPosition: function getPosition() {
       var _this = this;
+
+      axios.get('getPosition').then(function (response) {
+        _this.positions = response.data;
+
+        if (_this.position == null) {//configuracion de mensaje TOASTR
+        }
+      });
+    },
+    create: function create() {
+      var _this2 = this;
 
       var params = {
         nombres: this.employee.nombres,
@@ -1802,14 +1822,14 @@ __webpack_require__.r(__webpack_exports__);
         cargo: this.employee.cargo
       };
       axios.post('crear', params).then(function (response) {
-        _this.employee.nombres = '', _this.employee.documento = '', _this.employee.telefono = '', _this.employee.direccion = '', _this.employee.cargo = '', _this.errors = '';
+        _this2.employee.nombres = '', _this2.employee.documento = '', _this2.employee.telefono = '', _this2.employee.direccion = '', _this2.employee.cargo = '', _this2.errors = '';
+
+        _this2.getPosition();
       })["catch"](function (error) {
-        _this.errors = '';
+        _this2.errors = '';
 
         if (error.response.status == 422) {
-          _this.errors = error.response.data.errors;
-          console.log(_this.errors);
-          console.log(_this.errors.nombres);
+          _this2.errors = error.response.data.errors;
         }
       });
     }
@@ -37278,182 +37298,266 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "nombres" } }, [_vm._v("Nombres:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.employee.nombres,
-                expression: "employee.nombres"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.nombres != null },
-            attrs: { type: "text", id: "nombres" },
-            domProps: { value: _vm.employee.nombres },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.employee, "nombres", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.nombres) + "\n      ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "documento" } }, [_vm._v("Documento:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.employee.documento,
-                expression: "employee.documento"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.documento != null },
-            attrs: { type: "number", id: "documento" },
-            domProps: { value: _vm.employee.documento },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.employee, "documento", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.documento) + "\n      ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "telefono" } }, [_vm._v("Telefono:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.employee.telefono,
-                expression: "employee.telefono"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.telefono != null },
-            attrs: { type: "number", id: "telefono" },
-            domProps: { value: _vm.employee.telefono },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.employee, "telefono", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.telefono) + "\n      ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "direccion" } }, [_vm._v("Direccion:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.employee.direccion,
-                expression: "employee.direccion"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.direccion != null },
-            attrs: { type: "text", id: "direccion" },
-            domProps: { value: _vm.employee.direccion },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.employee, "direccion", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.direccion) + "\n      ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "cargo" } }, [_vm._v("Cargo:")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "nombres" } }, [_vm._v("Nombres:")]),
+            _vm._v(" "),
+            _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.employee.cargo,
-                  expression: "employee.cargo"
+                  value: _vm.employee.nombres,
+                  expression: "employee.nombres"
                 }
               ],
               staticClass: "form-control",
+              class: { "is-invalid": this.errors.nombres != null },
+              attrs: {
+                type: "text",
+                id: "nombres",
+                disabled: this.positions == ""
+              },
+              domProps: { value: _vm.employee.nombres },
               on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.employee,
-                    "cargo",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.employee, "nombres", $event.target.value)
                 }
               }
-            },
-            [
-              _c("option", { attrs: { disabled: "", selected: "" } }, [
-                _vm._v("Seleccionar:")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "" } }, [_vm._v("Tecnico")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "" } }, [_vm._v("Gerente")])
-            ]
-          )
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.nombres, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "documento" } }, [
+              _vm._v("Documento:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.employee.documento,
+                  expression: "employee.documento"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.documento != null },
+              attrs: {
+                type: "number",
+                id: "documento",
+                disabled: this.positions == ""
+              },
+              domProps: { value: _vm.employee.documento },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.employee, "documento", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.documento, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "telefono" } }, [_vm._v("Telefono:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.employee.telefono,
+                  expression: "employee.telefono"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.telefono != null },
+              attrs: {
+                type: "number",
+                id: "telefono",
+                disabled: this.positions == ""
+              },
+              domProps: { value: _vm.employee.telefono },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.employee, "telefono", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.telefono, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "direccion" } }, [
+              _vm._v("Direccion:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.employee.direccion,
+                  expression: "employee.direccion"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.direccion != null },
+              attrs: {
+                type: "text",
+                id: "direccion",
+                disabled: this.positions == ""
+              },
+              domProps: { value: _vm.employee.direccion },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.employee, "direccion", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.direccion, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "cargo" } }, [_vm._v("Cargo:")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.employee.cargo,
+                    expression: "employee.cargo"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": this.errors.cargo != null },
+                attrs: { disabled: this.positions == "" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.employee,
+                      "cargo",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { value: "", selected: "", disabled: "" } },
+                  [_vm._v("Seleccionar")]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.positions, function(data) {
+                  return _c(
+                    "option",
+                    {
+                      domProps: { value: data.id },
+                      model: {
+                        value: _vm.employee.cargo,
+                        callback: function($$v) {
+                          _vm.$set(_vm.employee, "cargo", $$v)
+                        },
+                        expression: "employee.cargo"
+                      }
+                    },
+                    [_vm._v(_vm._s(data.cargo))]
+                  )
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.errors.cargo, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            }),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(_vm.employee))])
+          ],
+          2
+        ),
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "btn btn-success", attrs: { type: "submit" } },
+          {
+            staticClass: "btn btn-success",
+            attrs: { type: "submit", disabled: this.positions == "" }
+          },
           [_vm._v("Crear")]
         )
       ]
-    )
+    ),
+    _vm._v(" "),
+    _c("div", {}, [_c("pre", [_vm._v(_vm._s(this.positions))])])
   ])
 }
 var staticRenderFns = []
@@ -37494,193 +37598,235 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "cargo" } }, [_vm._v("Cargo:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.position.cargo,
-                expression: "position.cargo"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.cargo },
-            attrs: { type: "text", id: "cargo" },
-            domProps: { value: _vm.position.cargo },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "cargo" } }, [_vm._v("Cargo:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.position.cargo,
+                  expression: "position.cargo"
                 }
-                _vm.$set(_vm.position, "cargo", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.cargo },
+              attrs: { type: "text", id: "cargo" },
+              domProps: { value: _vm.position.cargo },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.position, "cargo", $event.target.value)
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.cargo) + "\n      ")
-          ])
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.cargo, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "salario" } }, [_vm._v("Salario:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.position.salario,
-                expression: "position.salario"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.salario },
-            attrs: { type: "number", id: "salario" },
-            domProps: { value: _vm.position.salario },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "salario" } }, [_vm._v("Salario:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.position.salario,
+                  expression: "position.salario"
                 }
-                _vm.$set(_vm.position, "salario", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.salario },
+              attrs: { type: "number", id: "salario" },
+              domProps: { value: _vm.position.salario },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.position, "salario", $event.target.value)
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.salario) + "\n      ")
-          ])
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.salario, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "impuesto" } }, [_vm._v("Impuesto:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.position.impuesto,
-                expression: "position.impuesto"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.impuesto },
-            attrs: { type: "number", id: "impuesto", step: "0.01" },
-            domProps: { value: _vm.position.impuesto },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "impuesto" } }, [_vm._v("Impuesto:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.position.impuesto,
+                  expression: "position.impuesto"
                 }
-                _vm.$set(_vm.position, "impuesto", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.impuesto },
+              attrs: { type: "number", id: "impuesto", step: "0.01" },
+              domProps: { value: _vm.position.impuesto },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.position, "impuesto", $event.target.value)
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.impuesto) + "\n      ")
-          ])
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.impuesto, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "salud" } }, [_vm._v("Salud:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.position.salud,
-                expression: "position.salud"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.salud },
-            attrs: { type: "number", id: "salud", step: "0.01" },
-            domProps: { value: _vm.position.salud },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "salud" } }, [_vm._v("Salud:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.position.salud,
+                  expression: "position.salud"
                 }
-                _vm.$set(_vm.position, "salud", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.salud },
+              attrs: { type: "number", id: "salud", step: "0.01" },
+              domProps: { value: _vm.position.salud },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.position, "salud", $event.target.value)
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.salud) + "\n      ")
-          ])
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.salud, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "pension" } }, [_vm._v("Pension:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.position.pension,
-                expression: "position.pension"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.pension },
-            attrs: { type: "number", id: "pension", step: "0.01" },
-            domProps: { value: _vm.position.pension },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "pension" } }, [_vm._v("Pension:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.position.pension,
+                  expression: "position.pension"
                 }
-                _vm.$set(_vm.position, "pension", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.pension },
+              attrs: { type: "number", id: "pension", step: "0.01" },
+              domProps: { value: _vm.position.pension },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.position, "pension", $event.target.value)
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.pension) + "\n      ")
-          ])
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.pension, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "valor_primas" } }, [
-            _vm._v("Valor prima:")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.position.valor_primas,
-                expression: "position.valor_primas"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": this.errors.valor_primas },
-            attrs: { type: "number", id: "valor_primas", step: "0.01" },
-            domProps: { value: _vm.position.valor_primas },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "valor_primas" } }, [
+              _vm._v("Valor prima:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.position.valor_primas,
+                  expression: "position.valor_primas"
                 }
-                _vm.$set(_vm.position, "valor_primas", $event.target.value)
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": this.errors.valor_primas },
+              attrs: { type: "number", id: "valor_primas", step: "0.01" },
+              domProps: { value: _vm.position.valor_primas },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.position, "valor_primas", $event.target.value)
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "invalid-feedback" }, [
-            _vm._v("\n        " + _vm._s(_vm.errors.valor_primas) + "\n      ")
-          ])
-        ]),
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.valor_primas, function(data) {
+              return _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v("\n        " + _vm._s(data) + "\n      ")
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
         _c(
           "button",
@@ -50053,15 +50199,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************************!*\
   !*** ./resources/js/components/position/CreateComponent.vue ***!
   \**************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateComponent_vue_vue_type_template_id_6de9e826___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateComponent.vue?vue&type=template&id=6de9e826& */ "./resources/js/components/position/CreateComponent.vue?vue&type=template&id=6de9e826&");
 /* harmony import */ var _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/position/CreateComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50091,7 +50236,7 @@ component.options.__file = "resources/js/components/position/CreateComponent.vue
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/position/CreateComponent.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50137,8 +50282,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\suf\Documents\renaware\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\suf\Documents\renaware\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\luiss\Documents\GitHub\RENAWARE\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\luiss\Documents\GitHub\RENAWARE\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -20,7 +20,7 @@ class EmployeesSalariesTableSeeder extends Seeder
           'salud' =>"0.08",
           'pension' =>"0.08",
           'valor_primas' =>"0.5",
-          'cargo' =>"Técnico"
+          'cargo' =>"Tecnico"
         ]);
 
         App\EmployeeSalary::create([
