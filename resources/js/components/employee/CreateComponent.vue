@@ -2,6 +2,13 @@
   <div>
     <h5 class="card-tite">Crear empleado</h5>
     <br>
+    <div v-if="notificacion == 1" class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Ojo!</strong> Actualmente no cuenta con cargos nuevos para asignar al empleado, por favor cree un nuevo cargo.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <br>
     <form @submit.prevent="create">
       <div class="form-group">
         <label for="nombres">Nombres:</label>
@@ -40,13 +47,10 @@
         <div class="invalid-feedback" v-for="data in errors.cargo">
           {{data}}
         </div>
-        <span>{{employee}}</span>
       </div>
       <button type="submit" class="btn btn-success" :disabled="this.positions==''">Crear</button>
     </form>
-    <div class="">
-      <pre>{{this.positions}}</pre>
-    </div>
+    {{notificacion}}
   </div>
 </template>
 
@@ -57,11 +61,13 @@ export default {
       employees: [],
       employee: {nombres: '', documento: '', telefono: '', direccion:'', cargo:''},
       errors:'',
-      positions: ''
+      positions: '',
+      notificacion: 0
     }
   },
   created:  function() {
     this.getPosition();
+    this.validateNull();
   },
   methods:{
     getPosition()
@@ -69,12 +75,19 @@ export default {
       axios.get('getPosition')
       .then(response =>{
         this.positions = response.data;
-        if (this.position==null) {
-          //configuracion de mensaje TOASTR
-        }
       })
-
     },
+    validateNull()
+    {
+      if (this.position==null) {
+        this.notificacion=1;
+        return this.notificacion;
+        console.log(this.notificacion);
+      }else{
+        this.notificacion=0;
+      }
+    }
+    ,
     create()
     {
       const params = {
@@ -93,6 +106,7 @@ export default {
         this.employee.cargo = '',
         this.errors = '';
         this.getPosition();
+        this.validateNull();
       })
       .catch( error =>{
         this.errors = ''

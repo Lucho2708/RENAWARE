@@ -101,4 +101,10 @@ class EmployeeSalaryController extends Controller
       $position = EmployeeSalary::All();
       return $position;
     }
+
+    public function getEmployeeAll()
+    {
+      $empleado = EmployeeSalary::with('employee')->get();
+      return $empleado;
+    }
 }
