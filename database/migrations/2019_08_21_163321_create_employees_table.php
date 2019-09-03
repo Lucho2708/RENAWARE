@@ -11,10 +11,10 @@ class CreateEmployeesTable extends Migration
      *
      * @return void
      */
+     //Tabla de empleados.
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-          //Tabla de empleados.
             $table->bigIncrements('id');
             $table->bigInteger('documento');
             $table->bigInteger('telefono');

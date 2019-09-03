@@ -5,5 +5,6 @@
 @endsection
 
 @section('content')
+{{-- Se genera la vista a travez del componente VUE.JS en la carpeta /resource/js/components --}}
 <position-create-component></position-create-component>
 @endsection

@@ -97,6 +97,10 @@ export default {
         direccion:this.employee.direccion,
         cargo:this.employee.cargo
       };
+      /**
+      * Se crean los empleados a travez de Axios
+      * ya que nos permite generar peticiones HTTPS
+      */
       axios.post('crear', params)
       .then( response => {
         this.employee.nombres  = '',

@@ -101,6 +101,10 @@ export default {
         pension: this.position.pension,
         valor_primas: this.position.valor_primas,
       };
+      /**
+      * Se crean los empleados a travez de Axios
+      * ya que nos permite generar peticiones HTTPS
+      */
       axios.post('crear', params)
       .then(response => {
         this.position.cargo='',

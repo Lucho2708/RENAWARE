@@ -33,6 +33,10 @@ export default {
   },methods: {
     getPosition()
     {
+      /**
+      * Se crean los empleados a travez de Axios
+      * ya que nos permite generar peticiones HTTPS
+      */
       axios.get('cargo/getPositionAll')
       .then(response =>{
         this.positions = response.data;

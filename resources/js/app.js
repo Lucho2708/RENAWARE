@@ -3,6 +3,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+/**
+* Se realiza el registro de los componentes
+* relacionado a la vista y ruta de Php
+*/
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('employee-create-component', require('./components/employee/CreateComponent.vue').default);
 Vue.component('position-create-component', require('./components/position/CreateComponent.vue').default);

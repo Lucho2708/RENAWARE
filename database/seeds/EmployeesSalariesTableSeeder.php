@@ -12,6 +12,11 @@ class EmployeesSalariesTableSeeder extends Seeder
      *
      * @return void
      */
+
+     /**
+     *
+     *  Se genenran el Seeder para generar los dos primeros cargos.
+     */
     public function run()
     {
         App\EmployeeSalary::create([

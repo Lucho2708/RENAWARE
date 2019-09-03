@@ -16,6 +16,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+      /**
+      * Retorna la vista para listar los empleados.
+      */
       return view('employee.list');
     }
 
@@ -26,6 +29,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        /**
+        * Retorna la vista del formulario para crear empleado.
+        */
         return view('employee.create');
     }
 
@@ -37,7 +43,10 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-      //Se debe coloca Database transactions
+        /**
+        * Se generan los requiemientos de los campos a solicitar
+        * en el formulario del empleado.
+        */
 
         $this->validate($request, [
           'nombres'   => 'required',
@@ -47,6 +56,12 @@ class EmployeeController extends Controller
           'cargo'     => 'required'
         ]);
 
+
+        /**
+        *
+        * Se crea el empleado en la base de datos relacionado con el cargo.
+        *
+        */
         DB::transaction(function() use ($request){
 
           $empleado = New Empleado ($request->all());
@@ -76,44 +91,13 @@ class EmployeeController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function getPosition()
     {
-      //$positions = EmployeeSalary::all();
-
+      /**
+       *  Obtener datos del cargo donde la llave foránea sea "null"
+       *  para listar el "select", el cargo debe ser único por usuario.
+       */
+       
       $positions = DB::table('employees_salaries')
         ->whereNull('employee_id')
         ->get();

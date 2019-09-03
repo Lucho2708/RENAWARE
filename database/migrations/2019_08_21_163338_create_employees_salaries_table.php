@@ -11,6 +11,7 @@ class CreateEmployeesSalariesTable extends Migration
      *
      * @return void
      */
+     // Tabla de cargos y salarios 
     public function up()
     {
         Schema::create('employees_salaries', function (Blueprint $table) {

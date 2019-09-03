@@ -14,6 +14,11 @@ class EmployeeSalaryController extends Controller
      */
     public function index()
     {
+      /**
+      *
+      * Retorna la lista de todos los cargos generados por el usuario.
+      *
+      */
         return View('position.list');
     }
 
@@ -24,6 +29,11 @@ class EmployeeSalaryController extends Controller
      */
     public function create()
     {
+      /**
+      *
+      * Retorna el formnulario para crear el cargo.
+      *
+      */
         return view('position.create');
     }
 
@@ -35,6 +45,12 @@ class EmployeeSalaryController extends Controller
      */
     public function store(Request $request)
     {
+        /**
+        *
+        * Se le indica al usuario que el campo en el formulario
+        * es requerido
+        *
+        */
         $this->validate( $request, [
           'salario'   => 'required',
           'impuesto'  => 'required',
@@ -44,6 +60,10 @@ class EmployeeSalaryController extends Controller
           'cargo'     => 'required'
         ]);
 
+        /**
+        * Se crea el cargo que va a ser relacionado con el empleado.
+        *
+        */
         $position = New EmployeeSalary ($request->all());
 
         $position->save();
@@ -62,48 +82,25 @@ class EmployeeSalaryController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function getPositionAll()
     {
+      /**
+      *
+      * Se obtienen todos los cargos con valores "null" o "fk_empleado"
+      *
+      */
       $position = EmployeeSalary::All();
       return $position;
     }
 
     public function getEmployeeAll()
     {
+      /**
+      *
+      * Se obtienen los datos del empleado a travez de los cargos que no
+      * tiene valores "null" empleados relacionado al cargo.
+      *
+      */
       $empleado = EmployeeSalary::with('employee')->whereNotNull('employee_id')->get();
       return $empleado;
     }

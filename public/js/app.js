@@ -1833,6 +1833,11 @@ __webpack_require__.r(__webpack_exports__);
         direccion: this.employee.direccion,
         cargo: this.employee.cargo
       };
+      /**
+      * Se crean los empleados a travez de Axios
+      * ya que nos permite generar peticiones HTTPS
+      */
+
       axios.post('crear', params).then(function (response) {
         _this2.employee.nombres = '', _this2.employee.documento = '', _this2.employee.telefono = '', _this2.employee.direccion = '', _this2.employee.cargo = '', _this2.errors = '';
 
@@ -1898,6 +1903,10 @@ __webpack_require__.r(__webpack_exports__);
     getEmployee: function getEmployee() {
       var _this = this;
 
+      /**
+      * Se crean los empleados a travez de Axios
+      * ya que nos permite generar peticiones HTTPS
+      */
       axios.get('empleado/getEmployeeAll').then(function (response) {
         _this.positions = response.data;
         console.log(_this.positions);
@@ -2027,6 +2036,11 @@ __webpack_require__.r(__webpack_exports__);
         pension: this.position.pension,
         valor_primas: this.position.valor_primas
       };
+      /**
+      * Se crean los empleados a travez de Axios
+      * ya que nos permite generar peticiones HTTPS
+      */
+
       axios.post('crear', params).then(function (response) {
         _this.position.cargo = '', _this.position.salario = '', _this.position.impuesto = '', _this.position.salud = '', _this.position.pension = '', _this.position.valor_primas = '', _this.errors = '';
       })["catch"](function (error) {
@@ -2074,13 +2088,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2094,6 +2101,10 @@ __webpack_require__.r(__webpack_exports__);
     getPosition: function getPosition() {
       var _this = this;
 
+      /**
+      * Se crean los empleados a travez de Axios
+      * ya que nos permite generar peticiones HTTPS
+      */
       axios.get('cargo/getPositionAll').then(function (response) {
         _this.positions = response.data;
         console.log("Funciona");
@@ -38301,8 +38312,61 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h5", { staticClass: "card-tite" }, [_vm._v("Empleados")]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-hover" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.positions, function(data) {
+          return _c("tr", [
+            _c("th", [_vm._v(_vm._s(data.cargo))]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(data.salario))]),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cargo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Salario")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Detalle")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [
+      _c("button", { staticClass: "btn btn-info", attrs: { type: "button" } }, [
+        _vm._v("Info")
+      ])
+    ])
+  }
+]
+render._withStripped = true
 
 
 
@@ -50454,6 +50518,11 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/**
+* Se realiza el registro de los componentes
+* relacionado a la vista y ruta de Php
+*/
+
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('employee-create-component', __webpack_require__(/*! ./components/employee/CreateComponent.vue */ "./resources/js/components/employee/CreateComponent.vue")["default"]);
 Vue.component('position-create-component', __webpack_require__(/*! ./components/position/CreateComponent.vue */ "./resources/js/components/position/CreateComponent.vue")["default"]);
@@ -50888,8 +50957,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\luiss\Documents\GitHub\RENAWARE\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\luiss\Documents\GitHub\RENAWARE\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\suf\Documents\renaware\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\suf\Documents\renaware\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

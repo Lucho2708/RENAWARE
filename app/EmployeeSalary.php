@@ -7,6 +7,9 @@ use App\Empleado;
 
 class EmployeeSalary extends Model
 {
+  /**
+  * Modelo de cargo y salario
+  */
     protected $table = 'employees_salaries';
 
     protected $fillable = [
@@ -19,6 +22,9 @@ class EmployeeSalary extends Model
 
     public function employee()
     {
+      /**
+      * Se genera la relación uno a uno
+      */
       return $this->belongsTo(Empleado::class);
     }
 }
