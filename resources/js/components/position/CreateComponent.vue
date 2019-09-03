@@ -18,31 +18,63 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="impuesto">Impuesto:</label>
-        <input type="number" class="form-control" :class="{'is-invalid':this.errors.impuesto}"  id="impuesto" v-model="position.impuesto" step=0.01>
-        <div class="invalid-feedback" v-for="data in errors.impuesto">
-          {{data}}
+        <div class="row">
+          <div class="col">
+            <label for="impuesto">Impuesto:</label>
+            <input type="number" class="form-control" :class="{'is-invalid':this.errors.impuesto}"  id="impuesto" v-model="position.impuesto" step=0.01>
+            <div class="invalid-feedback" v-for="data in errors.impuesto">
+              {{data}}
+            </div>
+          </div>
+          <div class="col">
+            <label for="impuesto">Impuesto:</label>
+            <input type="number" class="form-control" disabled  id="impuesto" v-model="position.impuesto*position.salario" step=0.01 >
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="salud">Salud:</label>
-        <input type="number" class="form-control" :class="{'is-invalid':this.errors.salud}"  id="salud" v-model="position.salud" step=0.01>
-        <div class="invalid-feedback" v-for="data in errors.salud">
-          {{data}}
+        <div class="row">
+          <div class="col">
+            <label for="salud">Salud:</label>
+            <input type="number" class="form-control" :class="{'is-invalid':this.errors.salud}"  id="salud" v-model="position.salud" step=0.01>
+            <div class="invalid-feedback" v-for="data in errors.salud">
+              {{data}}
+            </div>
+          </div>
+          <div class="col">
+            <label for="salud">Salud:</label>
+            <input type="number" class="form-control" disabled id="salud" v-model="position.salud*position.salario" step=0.01>
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="pension">Pension:</label>
-        <input type="number" class="form-control" :class="{'is-invalid':this.errors.pension}"  id="pension" v-model="position.pension" step=0.01>
-        <div class="invalid-feedback" v-for="data in errors.pension">
-          {{data}}
+        <div class="row">
+          <div class="col">
+            <label for="pension">Pension:</label>
+            <input type="number" class="form-control" :class="{'is-invalid':this.errors.pension}"  id="pension" v-model="position.pension" step=0.01>
+            <div class="invalid-feedback" v-for="data in errors.pension">
+              {{data}}
+            </div>
+          </div>
+          <div class="col">
+            <label for="pension">Pension:</label>
+            <input type="number" class="form-control" disabled id="pension" v-model="position.pension*position.salario" step=0.01>
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="valor_primas">Valor prima:</label>
-        <input type="number" class="form-control" :class="{'is-invalid':this.errors.valor_primas}"  id="valor_primas" v-model="position.valor_primas" step=0.01>
-        <div class="invalid-feedback" v-for="data in errors.valor_primas">
-          {{data}}
+        <div class="row">
+          <div class="col">
+            <label for="valor_primas">Valor prima:</label>
+            <input type="number" class="form-control" :class="{'is-invalid':this.errors.valor_primas}"  id="valor_primas" v-model="position.valor_primas" step=0.01>
+            <div class="invalid-feedback" v-for="data in errors.valor_primas">
+              {{data}}
+            </div>
+          </div>
+          <div class="col">
+            <label for="valor_primas">Valor prima:</label>
+            <input type="number" class="form-control" disabled  id="valor_primas" v-model="position.valor_primas*position.salario" step=0.01>
+          </div>
         </div>
       </div>
       <button type="submit" class="btn btn-success">Crear</button>

@@ -104,7 +104,7 @@ class EmployeeSalaryController extends Controller
 
     public function getEmployeeAll()
     {
-      $empleado = EmployeeSalary::with('employee')->get();
+      $empleado = EmployeeSalary::with('employee')->whereNotNull('employee_id')->get();
       return $empleado;
     }
 }

@@ -12,9 +12,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="data in employees">
-          <th>{{data.employee}}</th>
-          <th>{{data.employee}}</th>
+        <tr v-for="data in positions">
+          <th>{{data.employee.nombres}}</th>
+          <th>{{data.employee.telefono}}</th>
           <th>{{data.cargo}}</th>
           <th><button type="button" class="btn btn-info">Info</button></th>
         </tr>
@@ -26,7 +26,8 @@
 export default {
   data(){
     return {
-      employees: ''
+    positions: []
+
     }
   },
   created(){
@@ -37,8 +38,9 @@ export default {
     {
       axios.get('empleado/getEmployeeAll')
       .then( response =>{
-        this.employees = response.data;
-        console.log(this.employees);
+        this.positions = response.data;
+
+        console.log(this.positions);
       });
     }
   }
